@@ -1,0 +1,438 @@
+:root {
+    --primary-blue: #0284c7;       /* Biru utama */
+    --light-blue: #e0f2fe;         /* Latar biru muda */
+    --soft-blue: #bae6fd;          /* Border/Aksen biru */
+    --dark-blue: #0c4a6e;          /* Teks utama */
+    --white: #ffffff;
+    --text-dark: #1e293b;
+    --text-muted: #475569;
+    --bg-page: #f8fafc;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    line-height: 1.8; /* Jarak antar baris lebih bernapas */
+}
+
+/* Screen Reader Utility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Container Umum dengan Margin yang Luas */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Navbar dengan Jarak Cukup */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 8%;
+    background-color: var(--white);
+    box-shadow: 0 4px 20px rgba(2, 132, 199, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo a {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--primary-blue);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-blue);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-blue);
+}
+
+.nav-btn-highlight {
+    background-color: var(--light-blue);
+    padding: 0.6rem 1.4rem;
+    border-radius: 25px;
+    border: 1px solid var(--soft-blue);
+}
+
+.nav-btn-highlight:hover {
+    background-color: var(--primary-blue) !important;
+    color: var(--white) !important;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(180deg, var(--light-blue) 0%, var(--bg-page) 100%);
+    padding: 6rem 0 5rem 0;
+    text-align: center;
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Memberikan jarak antar elemen hero */
+}
+
+.badge {
+    background-color: var(--soft-blue);
+    color: var(--dark-blue);
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.hero h1 {
+    font-size: 2.6rem;
+    color: var(--dark-blue);
+    font-weight: 700;
+    line-height: 1.3;
+    max-width: 800px;
+}
+
+.hero-subtext {
+    font-size: 1.15rem;
+    max-width: 700px;
+    color: var(--text-muted);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+/* Tombol / Button */
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-blue);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    padding: 0.9rem 2.2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    background-color: transparent;
+    display: inline-block;
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+    border: 1px solid var(--soft-blue);
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-blue);
+    color: var(--white);
+}
+
+/* Section: About VALA */
+.about-section {
+    padding: 4rem 0 6rem 0;
+}
+
+.about-card {
+    background-color: var(--white);
+    border: 1px solid var(--soft-blue);
+    border-radius: 24px;
+    padding: 4rem 3.5rem; /* Padding dalam yang lega */
+    box-shadow: 0 10px 30px rgba(2, 132, 199, 0.04);
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 3rem; /* Jarak terpisah dari isi cerita */
+}
+
+.section-tag {
+    background-color: var(--soft-blue);
+    color: var(--dark-blue);
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.about-header h2 {
+    color: var(--dark-blue);
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+/* Blok Manifesto (Kotak Kutipan Biru Muda) */
+.manifesto-box {
+    background-color: var(--light-blue);
+    border-left: 5px solid var(--primary-blue);
+    padding: 2.5rem;
+    border-radius: 0 20px 20px 0;
+    margin-bottom: 3rem; /* Jarak jauh agar tidak terlalu rapat dengan teks bawah */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Jarak antar paragraf manifesto */
+}
+
+.manifesto-lead {
+    font-size: 1.1rem;
+    color: var(--dark-blue);
+    line-height: 1.8;
+}
+
+.manifesto-highlight {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+.manifesto-highlight strong {
+    color: var(--primary-blue);
+}
+
+/* Cerita Paragraf Latar Belakang */
+.about-story {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem; /* Memberi jarak konsisten antar paragraf */
+    margin-bottom: 4rem; /* Jarak menuju 3 grid nilai utama */
+}
+
+.about-story p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    text-align: justify;
+    line-height: 1.9;
+}
+
+/* Nilai Utama VALA (3 Grid) */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem; /* Jarak antar kotak nilai */
+}
+
+.value-item {
+    background-color: var(--bg-page);
+    padding: 2.2rem 1.8rem;
+    border-radius: 18px;
+    border: 1px solid var(--soft-blue);
+    transition: var(--transition);
+}
+
+.value-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.08);
+}
+
+.value-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.value-item h3 {
+    color: var(--dark-blue);
+    font-size: 1.15rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.value-item p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Section: Koleksi Produk */
+.products {
+    padding: 5rem 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--dark-blue);
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 550px;
+    margin: 0 auto 4rem;
+}
+
+.search-form input {
+    width: 75%;
+    padding: 0.9rem 1.5rem;
+    border: 2px solid var(--soft-blue);
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+    background-color: var(--white);
+}
+
+.search-form input:focus {
+    border-color: var(--primary-blue);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem; /* Jarak lega antar kartu produk */
+}
+
+.product-card {
+    background: var(--white);
+    border: 1px solid var(--soft-blue);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.1);
+}
+
+.img-box {
+    background-color: var(--light-blue);
+    height: 180px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.accessibility-tag {
+    background-color: #f0f9ff;
+    color: var(--primary-blue);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    border: 1px solid var(--soft-blue);
+}
+
+.product-card h3 {
+    color: var(--dark-blue);
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.product-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1.2rem;
+}
+
+.price {
+    font-weight: 700;
+    color: var(--dark-blue);
+    font-size: 1.1rem;
+}
+
+.back-home-container {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    font-size: 0.95rem;
+    margin-top: 4rem;
+}
