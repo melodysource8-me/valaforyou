@@ -3,91 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VALA - Wadah Kosmetik Inklusif Ramah Disabilitas</title>
+    <title>VALA - Kosmetik Inklusif Ramah Disabilitas</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navigasi Utama -->
-    <header role="banner">
-        <nav class="navbar" aria-label="Navigasi Utama">
+    <!-- Header & Navigasi -->
+    <header>
+        <nav class="navbar">
             <div class="logo">
                 <a href="{{ url_for('home') }}">VALA<span>.</span></a>
             </div>
             <ul class="nav-links">
                 <li><a href="{{ url_for('home') }}">Beranda</a></li>
                 <li><a href="{{ url_for('home') }}#about">Tentang VALA</a></li>
-                <li><a href="{{ url_for('koleksi') }}" class="nav-btn-highlight">Koleksi Produk</a></li>
-                <li><a href="{{ url_for('lihat_keranjang') }}">Keranjang ({{ session.get('cart', [])|length }})</a></li>
+                <li><a href="{{ url_for('koleksi') }}" class="btn-nav-highlight">Koleksi Produk</a></li>
+                <li><a href="{{ url_for('lihat_keranjang') }}" class="cart-link">Keranjang ({{ session.get('cart', [])|length }})</a></li>
             </ul>
         </nav>
     </header>
 
-    <main id="main-content">
-        
+    <main>
         {% if not show_products %}
-        <!-- ================= Halaman Beranda (Default) ================= -->
+        <!-- ================= HALAMAN BERANDA ================= -->
         
         <!-- Hero Section -->
-        <section class="hero" aria-labelledby="hero-heading">
-            <div class="container hero-container">
+        <section class="hero-section">
+            <div class="container hero-content">
                 <span class="badge">Incredible Beauty for Everyone</span>
-                <h1 id="hero-heading">Kecantikan Tanpa Batasan Bersama VALA</h1>
+                <h1>Kecantikan Tanpa Batasan Bersama VALA</h1>
                 <p class="hero-subtext">Wadah kosmetik dan perawatan diri inklusif yang dirancang ramah bagi penyandang disabilitas, mengutamakan kemudahan, kenyamanan, dan kesetaraan.</p>
-                <div class="hero-buttons">
+                <div class="hero-actions">
                     <a href="#about" class="btn-outline">Pelajari Tentang VALA</a>
                     <a href="{{ url_for('koleksi') }}" class="btn-primary">Lihat Koleksi Produk</a>
                 </div>
             </div>
         </section>
 
-        <!-- Section: About VALA -->
-        <section id="about" class="about-section" aria-labelledby="about-heading">
+        <!-- Section About VALA -->
+        <section id="about" class="about-section">
             <div class="container">
                 <div class="about-card">
                     <div class="about-header">
                         <span class="section-tag">About VALA</span>
-                        <h2 id="about-heading">Mengapa VALA Hadir?</h2>
+                        <h2>Mengapa VALA Hadir?</h2>
                     </div>
                     
-                    <!-- Ringkasan / Manifesto VALA -->
+                    <!-- Box Manifesto -->
                     <div class="manifesto-box">
-                        <p class="manifesto-lead">
+                        <p class="manifesto-text">
                             Bagi banyak orang, merawat diri dan berdandan bukan sekadar mempercantik diri, melainkan cara membangun rasa percaya diri. Namun, penyandang disabilitas sering kali dilupakan oleh industri kecantikan—menghadapi kemasan yang sulit dibuka, informasi yang tak ramah, hingga pilihan yang terbatas.
                         </p>
-                        <p class="manifesto-highlight">
+                        <p class="manifesto-callout">
                             <strong>VALA hadir untuk mengubah itu.</strong> Kami menginovasi produk kecantikan dan perawatan diri yang inklusif, ramah disabilitas, dan dapat diakses oleh siapa saja. Karena setiap orang berhak merasa percaya diri dan dirawat dengan setara.
                         </p>
                     </div>
 
-                    <!-- Cerita Latar Belakang Lengkap -->
-                    <div class="about-story">
+                    <!-- Cerita Latar Belakang -->
+                    <div class="story-content">
                         <p>
                             Di keseharian kita, kosmetik dan skincare sering dipandang sebagai urusan mempercantik diri semata. Padahal bagi banyak orang, merawat kulit dan berdandan adalah bagian dari rutinitas harian yang memberi rasa nyaman, percaya diri, dan menambah semangat setiap harinya.
                         </p>
                         <p>
-                            Terkadang kita hanya mementingkan penyelesaian permasalahan dari konsumen mayoritas, namun tanpa kita sadari kita juga melupakan dari sisi konsumen minoritas. Konsumen minoritas yang dimaksud di sini adalah <strong>para penyandang disabilitas</strong>. Mereka adalah segelintir individu yang memiliki keinginan yang sama: ingin tampil rapi, merawat diri, dan diperlakukan layaknya sebagai konsumen biasa—bukan sebagai kelompok yang dianggap tidak membutuhkan produk kecantikan.
+                            Terkadang kita hanya mementingkan penyelesaian permasalahan dari konsumen mayoritas, namun tanpa kita sadari kita juga melupakan dari sisi konsumen minoritas. Konsumen minoritas yang dimaksud di sini adalah <strong>para penyandang disabilitas</strong>. Mereka adalah segelintir individu yang memiliki keinginan yang sama: ingin tampil rapi, merawat diri, dan diperlakukan layaknya sebagai konsumen biasa.
                         </p>
                         <p>
-                            Namun, masih banyak industri kosmetik dan skincare kurang memperhatikan kebutuhan penyandang disabilitas. Mereka menghadapi kesulitan dalam menggunakan kemasan, membaca informasi produk, dan mengikuti instruksi penggunaan. Selain itu, pengadaan produk khusus disabilitas cenderung mahal dan terbatas. Maka dari itu, kami <strong>VALA</strong> hadir untuk melakukan inovasi terhadap produk kecantikan dan perawatan diri berdasarkan permasalahan penyandang disabilitas.
+                            Namun, masih banyak industri kosmetik dan skincare kurang memperhatikan kebutuhan penyandang disabilitas. Mereka menghadapi kesulitan dalam menggunakan kemasan, membaca informasi produk, dan mengikuti instruksi penggunaan. Maka dari itu, kami <strong>VALA</strong> hadir untuk melakukan inovasi terhadap produk kecantikan berdasarkan permasalahan tersebut.
                         </p>
                     </div>
 
-                    <!-- Highlight Nilai Utama VALA -->
+                    <!-- 3 Nilai Utama -->
                     <div class="values-grid">
-                        <div class="value-item">
+                        <div class="value-card">
                             <div class="value-icon"></div>
                             <h3>Kemasan Ergonomis</h3>
                             <p>Kemasan khusus yang mudah dibuka dan dipegang tanpa memerlukan genggaman motorik kuat.</p>
                         </div>
-                        <div class="value-item">
+                        <div class="value-card">
                             <div class="value-icon"></div>
                             <h3>Penanda Taktil & Braille</h3>
                             <p>Fitur sensori dan informasi Braille untuk memudahkan teman-netra mengenali produk secara mandiri.</p>
                         </div>
-                        <div class="value-item">
-                            <div class="value-icon">S</div>
+                        <div class="value-card">
+                            <div class="value-icon"></div>
                             <h3>Harga Terjangkau</h3>
                             <p>Menghadirkan inovasi inklusif tanpa membebankan biaya tinggi kepada konsumen disabilitas.</p>
                         </div>
@@ -97,35 +96,42 @@
         </section>
 
         {% else %}
-        <!-- ================= Halaman Koleksi Produk ================= -->
+        <!-- ================= HALAMAN KOLEKSI PRODUK ================= -->
         
-        <section id="produk" class="products" aria-labelledby="products-heading">
+        <section class="products-section">
             <div class="container">
-                <h2 id="products-heading" class="section-title">Koleksi Produk Inklusif VALA</h2>
+                <div class="products-header">
+                    <h2>Koleksi Produk Inklusif VALA</h2>
+                    <p>Produk kecantikan ergonomis dengan standar aksesibilitas tinggi.</p>
+                </div>
                 
                 <!-- Form Pencarian -->
-                <form action="{{ url_for('koleksi') }}" method="GET" class="search-form" role="search">
-                    <label for="search-input" class="sr-only">Cari produk VALA</label>
-                    <input type="text" id="search-input" name="q" value="{{ pencarian }}" placeholder="Cari nama produk atau fitur aksesibilitas..." aria-label="Cari produk">
+                <form action="{{ url_for('koleksi') }}" method="GET" class="search-bar">
+                    <input type="text" name="q" value="{{ pencarian }}" placeholder="Cari nama produk atau fitur aksesibilitas..." aria-label="Cari produk">
                     <button type="submit" class="btn-primary">Cari</button>
                 </form>
 
+                <!-- Grid Kartu Produk -->
                 <div class="product-grid">
                     {% for p in produk %}
-                    <article class="product-card" tabindex="0">
-                        <div class="img-box" aria-hidden="true">
-                            VALA {{ p.kategori }}
+                    <article class="product-card">
+                        <div class="product-image-placeholder">
+                            <span>VALA {{ p.kategori }}</span>
                         </div>
-                        <span class="accessibility-tag">{{ p.fitur_aksesibilitas }}</span>
-                        <h3>{{ p.nama }}</h3>
-                        <p class="product-desc">{{ p.deskripsi }}</p>
-                        <div class="card-footer">
-                            <span class="price">Rp {{ "{:,}".format(p.harga) }}</span>
-                            <form action="{{ url_for('tambah_keranjang', product_id=p.id) }}" method="POST">
-                                <button type="submit" class="btn-secondary" aria-label="Tambah {{ p.nama }} ke keranjang">
-                                    + Keranjang
-                                </button>
-                            </form>
+                        
+                        <div class="product-info">
+                            <span class="access-tag">{{ p.fitur_aksesibilitas }}</span>
+                            <h3 class="product-title">{{ p.nama }}</h3>
+                            <p class="product-desc">{{ p.deskripsi }}</p>
+                            
+                            <div class="product-footer">
+                                <span class="product-price">Rp {{ "{:,}".format(p.harga) }}</span>
+                                <form action="{{ url_for('tambah_keranjang', product_id=p.id) }}" method="POST">
+                                    <button type="submit" class="btn-add-cart">
+                                        + Keranjang
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </article>
                     {% else %}
@@ -133,16 +139,15 @@
                     {% endfor %}
                 </div>
                 
-                <div class="back-home-container">
+                <div class="back-link-wrapper">
                     <a href="{{ url_for('home') }}" class="btn-outline">← Kembali ke Beranda</a>
                 </div>
             </div>
         </section>
         {% endif %}
-
     </main>
 
-    <footer role="contentinfo">
+    <footer>
         <p>&copy; 2026 <strong>VALA</strong>. Wadah kosmetik inklusif dan ramah disabilitas.</p>
     </footer>
 

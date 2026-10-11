@@ -11,7 +11,7 @@ PRODUCTS = [
         "id": 1, 
         "nama": "Easy-Grip Liquid Foundation", 
         "kategori": "Foundation", 
-        "harga": 185000, 
+        "harga": 105000, 
         "deskripsi": "Dilengkapi dengan botol bertali fleksibel dan tutup beralur taktil yang mudah dibuka tanpa memerlukan genggaman kuat.",
         "fitur_aksesibilitas": "Tutup Taktil & Tali Silikon Easy-Hold"
     },
@@ -19,7 +19,7 @@ PRODUCTS = [
         "id": 2, 
         "nama": "Braille-Marked Velvet Lipstick", 
         "kategori": "Lipstik", 
-        "harga": 120000, 
+        "harga": 20000, 
         "deskripsi": "Lipstik dengan label huruf Braille di bagian luar kemasan dan mekanisme tutup magnetik yang langsung terkunci presisi.",
         "fitur_aksesibilitas": "Label Braille & Tutup Magnetik Otomatis"
     },
@@ -27,7 +27,7 @@ PRODUCTS = [
         "id": 3, 
         "nama": "Single-Touch Glow Palette", 
         "kategori": "Palette", 
-        "harga": 250000, 
+        "harga": 50000, 
         "deskripsi": "Palet kosmetik dengan tekstur permukaan timbul (embossed) untuk membedakan eyeshadow, blush, dan highlighter secara indrawi.",
         "fitur_aksesibilitas": "Tekstur Taktil & Pengunci Magnetik"
     },
@@ -35,7 +35,7 @@ PRODUCTS = [
         "id": 4, 
         "nama": "Ergonomic Brow Definer", 
         "kategori": "Mata", 
-        "harga": 95000, 
+        "harga": 30000, 
         "deskripsi": "Pensil alis dengan pegangan bentuk segitiga ergonomis yang stabil untuk genggaman dengan kemampuan motorik terbatas.",
         "fitur_aksesibilitas": "Pegangan Segitiga Ergonomis Anti-Slip"
     }
