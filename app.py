@@ -9,7 +9,7 @@ PRODUK_VALA = [
         "id": 1,
         "nama": "Braille-Marked Velvet Lipstick",
         "kategori": "Lipstick",
-        "harga": 120000,
+        "harga": 55000,
         "fitur_aksesibilitas": "Label Braille & Tutup Magnetik Otomatis",
         "deskripsi": "Lipstick dengan label huruf Braille di bagian luar kemasan dan mekanisme tutup magnetik yang langsung terkunci presisi.",
         "gambar": "images/lipstick.jpg"
@@ -18,10 +18,10 @@ PRODUK_VALA = [
         "id": 2,
         "nama": "Matte Shea Foundation",
         "kategori": "Foundation",
-        "harga": 185000,
+        "harga": 105000,
         "fitur_aksesibilitas": "Tombol Tekan Lebar & Indikator Klik",
         "deskripsi": "Foundation dengan tombol tekan luas ramah motorik tangan dan bunyi klik pengaman untuk memastikan wadah tertutup rapat.",
-        "gambar": "images/foundation.png"
+        "gambar": "foundation.png"
     },
     {
         "id": 3,
@@ -36,7 +36,7 @@ PRODUK_VALA = [
         "id": 4,
         "nama": "Magnetic Palette Eyeshadow",
         "kategori": "Eyeshadow",
-        "harga": 210000,
+        "harga": 65000,
         "fitur_aksesibilitas": "Sistem Magnetik & Buka-Tutup Satu Tangan",
         "deskripsi": "Palet perona mata dengan magnet kuat yang mudah dibuka menggunakan satu tangan oleh penyandang disabilitas fisik.",
         "gambar": "images/eyeshadow.jpg"
