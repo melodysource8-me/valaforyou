@@ -6,8 +6,16 @@
     <title>VALA - Kosmetik Inklusif Ramah Disabilitas</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Pustaka Pemindai QR Code Kamera -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
 <body>
+
+    <!-- Toast Notifikasi Interaktif -->
+    <div id="toast-notification" class="toast hidden" role="status" aria-live="polite">
+        ✨ Produk berhasil ditambahkan ke keranjang!
+    </div>
 
     <!-- Header & Navigasi -->
     <header>
@@ -17,9 +25,10 @@
             </div>
             <ul class="nav-links">
                 <li><a href="{{ url_for('home') }}">Beranda</a></li>
-                <li><a href="{{ url_for('home') }}#about">Tentang VALA</a></li>
+                <li><a href="{{ url_for('home') }}#ruang-qr-audio">Scan QR Kamera</a></li>
+                <li><a href="{{ url_for('home') }}#fitur-inklusif">Inovasi</a></li>
                 <li><a href="{{ url_for('koleksi') }}" class="btn-nav-highlight">Koleksi Produk</a></li>
-                <li><a href="{{ url_for('lihat_keranjang') }}" class="cart-link">Keranjang ({{ session.get('cart', [])|length }})</a></li>
+                <li><a href="{{ url_for('lihat_keranjang') }}" class="cart-link">Keranjang (<span id="cart-count">{{ session.get('cart', [])|length }}</span>)</a></li>
             </ul>
         </nav>
     </header>
@@ -28,68 +37,98 @@
         {% if not show_products %}
         <!-- ================= HALAMAN BERANDA ================= -->
         
-        <!-- Hero Section -->
         <section class="hero-section">
             <div class="container hero-content">
                 <span class="badge">Incredible Beauty for Everyone</span>
-                <h1>Kecantikan Tanpa Batasan Bersama VALA</h1>
-                <p class="hero-subtext">Wadah kosmetik dan perawatan diri inklusif yang dirancang ramah bagi penyandang disabilitas, mengutamakan kemudahan, kenyamanan, dan kesetaraan.</p>
+                <h1 class="font-display">Kecantikan Tanpa Batasan Bersama VALA</h1>
+                <p class="hero-subtext">Wadah kosmetik dan perawatan diri inklusif yang dirancang ramah bagi penyandang disabilitas, mengutamakan kemudahan motorik, kenyamanan, dan kesetaraan.</p>
                 <div class="hero-actions">
-                    <a href="#about" class="btn-outline">Pelajari Tentang VALA</a>
                     <a href="{{ url_for('koleksi') }}" class="btn-primary">Lihat Koleksi Produk</a>
+                    <a href="#ruang-qr-audio" class="btn-outline">📷 Buka Pemindai Kamera</a>
                 </div>
             </div>
         </section>
 
-        <!-- Section About VALA -->
-        <section id="about" class="about-section">
+        <!-- Stats / Impact Banner -->
+        <section class="stats-banner">
+            <div class="container stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Ramah Motorik & Fisik</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">⠃ Braille</span>
+                    <span class="stat-label">Standar Aksesibilitas Tunanetra</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">🔊 QR Audio</span>
+                    <span class="stat-label">Pemandu Suara Otomatis</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- RUANG KHUSUS: Pemindai QR Kamera & Voice Guide -->
+        <section id="ruang-qr-audio" class="qr-space-section">
             <div class="container">
-                <div class="about-card">
+                <div class="qr-space-card">
                     <div class="about-header">
-                        <span class="section-tag">About VALA</span>
-                        <h2>Mengapa VALA Hadir?</h2>
-                    </div>
-                    
-                    <!-- Box Manifesto -->
-                    <div class="manifesto-box">
-                        <p class="manifesto-text">
-                            Bagi banyak orang, merawat diri dan berdandan bukan sekadar mempercantik diri, melainkan cara membangun rasa percaya diri. Namun, penyandang disabilitas sering kali dilupakan oleh industri kecantikan—menghadapi kemasan yang sulit dibuka, informasi yang tak ramah, hingga pilihan yang terbatas.
-                        </p>
-                        <p class="manifesto-callout">
-                            <strong>VALA hadir untuk mengubah itu.</strong> Kami menginovasi produk kecantikan dan perawatan diri yang inklusif, ramah disabilitas, dan dapat diakses oleh siapa saja. Karena setiap orang berhak merasa percaya diri dan dirawat dengan setara.
-                        </p>
+                        <span class="section-tag">Pemindai Kamera Live</span>
+                        <h2 class="font-display">Ruang Pemindai QR Audio VALA</h2>
+                        <p style="color: var(--text-muted); max-width: 600px; margin: 0.5rem auto 0;">Gunakan kamera HP atau laptop Anda untuk memindai QR Code Taktil pada kemasan produk VALA secara langsung.</p>
                     </div>
 
-                    <!-- Cerita Latar Belakang -->
-                    <div class="story-content">
-                        <p>
-                            Di keseharian kita, kosmetik dan skincare sering dipandang sebagai urusan mempercantik diri semata. Padahal bagi banyak orang, merawat kulit dan berdandan adalah bagian dari rutinitas harian yang memberi rasa nyaman, percaya diri, dan menambah semangat setiap harinya.
-                        </p>
-                        <p>
-                            Terkadang kita hanya mementingkan penyelesaian permasalahan dari konsumen mayoritas, namun tanpa kita sadari kita juga melupakan dari sisi konsumen minoritas. Konsumen minoritas yang dimaksud di sini adalah <strong>para penyandang disabilitas</strong>. Mereka adalah segelintir individu yang memiliki keinginan yang sama: ingin tampil rapi, merawat diri, dan diperlakukan layaknya sebagai konsumen biasa.
-                        </p>
-                        <p>
-                            Namun, masih banyak industri kosmetik dan skincare kurang memperhatikan kebutuhan penyandang disabilitas. Mereka menghadapi kesulitan dalam menggunakan kemasan, membaca informasi produk, dan mengikuti instruksi penggunaan. Maka dari itu, kami <strong>VALA</strong> hadir untuk melakukan inovasi terhadap produk kecantikan berdasarkan permasalahan tersebut.
-                        </p>
-                    </div>
+                    <div class="camera-scanner-wrapper">
+                        <!-- Area Viewfinder Kamera -->
+                        <div class="camera-box">
+                            <div id="reader"></div>
+                            <div class="camera-controls">
+                                <button type="button" id="btn-start-camera" class="btn-primary" onclick="startCamera()">
+                                    📷 Aktifkan Kamera
+                                </button>
+                                <button type="button" id="btn-stop-camera" class="btn-outline hidden" onclick="stopCamera()">
+                                    ⏹️ Matikan Kamera
+                                </button>
+                            </div>
+                        </div>
 
-                    <!-- 3 Nilai Utama -->
-                    <div class="values-grid">
-                        <div class="value-card">
-                            <div class="value-icon"></div>
-                            <h3>Kemasan Ergonomis</h3>
-                            <p>Kemasan khusus yang mudah dibuka dan dipegang tanpa memerlukan genggaman motorik kuat.</p>
+                        <!-- Panel Hasil Pembacaan QR -->
+                        <div class="scan-result-box">
+                            <span class="section-tag" style="font-size: 0.75rem;">Hasil Pemindaian</span>
+                            <h3 id="scan-title" class="font-display" style="margin-top: 0.5rem; color: var(--dark-text);">Kamera Belum Aktif</h3>
+                            <p id="scan-desc" style="font-size: 0.9rem; color: var(--text-muted); margin: 0.8rem 0 1.5rem;">Arahkan kamera ke QR Code VALA. Suara pemandu otomatis akan membacakan rincian produk begitu QR terdeteksi.</p>
+                            
+                            <button type="button" id="btn-replay-voice" class="btn-primary hidden" style="width: 100%;" onclick="replayAudio()">
+                                🔊 Putar Ulang Suara Pemandu
+                            </button>
                         </div>
-                        <div class="value-card">
-                            <div class="value-icon"></div>
-                            <h3>Penanda Taktil & Braille</h3>
-                            <p>Fitur sensori dan informasi Braille untuk memudahkan teman-netra mengenali produk secara mandiri.</p>
-                        </div>
-                        <div class="value-card">
-                            <div class="value-icon"></div>
-                            <h3>Harga Terjangkau</h3>
-                            <p>Menghadirkan inovasi inklusif tanpa membebankan biaya tinggi kepada konsumen disabilitas.</p>
-                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seksi Inovasi Aksesibilitas (Diperbaiki Struktur Kartunya) -->
+        <section id="fitur-inklusif" class="about-section">
+            <div class="container">
+                <div class="about-header">
+                    <span class="section-tag">Aksesibilitas & Inovasi</span>
+                    <h2 class="font-display">Fitur Ramah Disabilitas VALA</h2>
+                </div>
+
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🔊</div>
+                        <h3 class="font-display">QR Taktil & Pemandu Suara</h3>
+                        <p>Stiker timbul berdampingan dengan QR Code pada kemasan untuk memicu Voice Guide yang menjelaskan informasi produk secara audio.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">⠃</div>
+                        <h3 class="font-display">Label Huruf Braille</h3>
+                        <p>Penandaan huruf Braille bertekstur pada setiap boks dan botol produk untuk memudahkan identifikasi mandiri bagi penyandang tunanetra.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🧲</div>
+                        <h3 class="font-display">Desain Fisik Mudah Digenggam</h3>
+                        <p>Konstruksi penutup magnetik presisi dan gagang kesat yang sangat ramah motorik walau hanya menggunakan satu tangan.</p>
                     </div>
                 </div>
             </div>
@@ -101,33 +140,38 @@
         <section class="products-section">
             <div class="container">
                 <div class="products-header">
-                    <h2>Koleksi Produk Inklusif VALA</h2>
-                    <p>Produk kecantikan ergonomis dengan standar aksesibilitas tinggi.</p>
+                    <h2 class="font-display">Koleksi Produk Inklusif VALA</h2>
+                    <p>Pilih produk kecantikan dengan standar aksesibilitas tinggi.</p>
                 </div>
                 
-                <!-- Form Pencarian -->
+                <div class="filter-chips">
+                    <a href="{{ url_for('koleksi') }}" class="chip active">Semua Produk</a>
+                    <a href="{{ url_for('koleksi', q='Braille') }}" class="chip">Label Braille</a>
+                    <a href="{{ url_for('koleksi', q='Magnetik') }}" class="chip">Tutup Magnetik</a>
+                    <a href="{{ url_for('koleksi', q='Pump') }}" class="chip">Tekstur Pump</a>
+                </div>
+
                 <form action="{{ url_for('koleksi') }}" method="GET" class="search-bar">
                     <input type="text" name="q" value="{{ pencarian }}" placeholder="Cari nama produk atau fitur aksesibilitas..." aria-label="Cari produk">
                     <button type="submit" class="btn-primary">Cari</button>
                 </form>
 
-                <!-- Grid Kartu Produk -->
                 <div class="product-grid">
                     {% for p in produk %}
                     <article class="product-card">
-                        <div class="product-image-placeholder">
-                            <span>VALA {{ p.kategori }}</span>
+                        <div class="product-image-container">
+                            <img src="{{ url_for('static', filename=p.gambar) }}" alt="{{ p.nama }}" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x280?text=VALA+Product';">
                         </div>
                         
                         <div class="product-info">
                             <span class="access-tag">{{ p.fitur_aksesibilitas }}</span>
-                            <h3 class="product-title">{{ p.nama }}</h3>
+                            <h3 class="product-title font-display">{{ p.nama }}</h3>
                             <p class="product-desc">{{ p.deskripsi }}</p>
-                            
+
                             <div class="product-footer">
                                 <span class="product-price">Rp {{ "{:,}".format(p.harga) }}</span>
                                 <form action="{{ url_for('tambah_keranjang', product_id=p.id) }}" method="POST">
-                                    <button type="submit" class="btn-add-cart">
+                                    <button type="submit" class="btn-add-cart" onclick="showToast()">
                                         + Keranjang
                                     </button>
                                 </form>
@@ -148,8 +192,120 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 <strong>VALA</strong>. Wadah kosmetik inklusif dan ramah disabilitas.</p>
+        <p>&copy; 2026 <strong class="font-display">VALA</strong>. Wadah kosmetik inklusif dan ramah disabilitas.</p>
     </footer>
 
+    <!-- Script Pemindai Kamera & Suara Lembut -->
+    <script>
+        let html5QrCode = null;
+        let lastScannedText = "";
+
+        function showToast() {
+            const toast = document.getElementById('toast-notification');
+            toast.classList.remove('hidden');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        function startCamera() {
+            if (!html5QrCode) {
+                html5QrCode = new Html5Qrcode("reader");
+            }
+
+            const config = { fps: 10, qrbox: { width: 220, height: 220 } };
+
+            html5QrCode.start(
+                { facingMode: "environment" },
+                config,
+                onScanSuccess,
+                onScanFailure
+            ).then(() => {
+                document.getElementById('btn-start-camera').classList.add('hidden');
+                document.getElementById('btn-stop-camera').classList.remove('hidden');
+                document.getElementById('scan-title').innerText = "Kamera Aktif";
+                document.getElementById('scan-desc').innerText = "Arahkan kamera ke QR Code produk...";
+            }).catch(err => {
+                alert("Gagal mengakses kamera. Pastikan Anda memberikan izin akses kamera pada browser.");
+                console.error(err);
+            });
+        }
+
+        function stopCamera() {
+            if (html5QrCode) {
+                html5QrCode.stop().then(() => {
+                    document.getElementById('btn-start-camera').classList.remove('hidden');
+                    document.getElementById('btn-stop-camera').classList.add('hidden');
+                    document.getElementById('scan-title').innerText = "Kamera Dimatikan";
+                }).catch(err => console.error(err));
+            }
+        }
+
+        function onScanSuccess(decodedText, decodedResult) {
+            // Membersihkan teks URL agar tidak membacakan "https" atau "slash"
+            let cleanText = decodedText;
+            if (decodedText.includes('/')) {
+                const parts = decodedText.split('/');
+                const rawName = parts[parts.length - 1] || parts[parts.length - 2];
+                cleanText = decodeURIComponent(rawName).replace(/[-_]/g, ' ');
+            }
+
+            const spokenMessage = "Produk terdeteksi: " + cleanText;
+
+            document.getElementById('scan-title').innerText = "QR Code Terdeteksi!";
+            document.getElementById('scan-desc').innerText = cleanText;
+            document.getElementById('btn-replay-voice').classList.remove('hidden');
+
+            lastScannedText = spokenMessage;
+            speakText(spokenMessage);
+        }
+
+        function onScanFailure(error) {
+            // Abaikan error per frame
+        }
+
+        function replayAudio() {
+            if (lastScannedText) {
+                speakText(lastScannedText);
+            }
+        }
+
+        /* Suara Wanita Lembut */
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'id-ID';
+                utterance.rate = 0.88;  // Nada lebih lambat & ramah
+                utterance.pitch = 1.15; // Nada wanita lembut
+
+                const voices = window.speechSynthesis.getVoices();
+                const femaleVoice = voices.find(v => 
+                    v.lang.includes('id') && 
+                    (v.name.toLowerCase().includes('female') || 
+                     v.name.toLowerCase().includes('gadis') || 
+                     v.name.toLowerCase().includes('google') || 
+                     v.name.toLowerCase().includes('natural'))
+                );
+
+                if (femaleVoice) {
+                    utterance.voice = femaleVoice;
+                }
+
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Fitur pembaca suara tidak didukung pada browser Anda.');
+            }
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = function() {
+                window.speechSynthesis.getVoices();
+            };
+        }
+    </script>
 </body>
 </html>

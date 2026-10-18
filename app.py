@@ -1,87 +1,94 @@
-import os
-import secrets
-
 from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY") or secrets.token_hex(32)
+app.secret_key = 'vala_secret_key_2026'
 
-PRODUCTS = [
+# Data Produk Inklusif VALA
+PRODUK_VALA = [
     {
-        "id": 1, 
-        "nama": "Easy-Grip Liquid Foundation", 
-        "kategori": "Foundation", 
-        "harga": 105000, 
-        "deskripsi": "Dilengkapi dengan botol bertali fleksibel dan tutup beralur taktil yang mudah dibuka tanpa memerlukan genggaman kuat.",
-        "fitur_aksesibilitas": "Tutup Taktil & Tali Silikon Easy-Hold"
+        "id": 1,
+        "nama": "Braille-Marked Velvet Lipstick",
+        "kategori": "Lipstick",
+        "harga": 120000,
+        "fitur_aksesibilitas": "Label Braille & Tutup Magnetik Otomatis",
+        "deskripsi": "Lipstick dengan label huruf Braille di bagian luar kemasan dan mekanisme tutup magnetik yang langsung terkunci presisi.",
+        "gambar": "images/lipstick.jpg"
     },
     {
-        "id": 2, 
-        "nama": "Braille-Marked Velvet Lipstick", 
-        "kategori": "Lipstik", 
-        "harga": 20000, 
-        "deskripsi": "Lipstik dengan label huruf Braille di bagian luar kemasan dan mekanisme tutup magnetik yang langsung terkunci presisi.",
-        "fitur_aksesibilitas": "Label Braille & Tutup Magnetik Otomatis"
+        "id": 2,
+        "nama": "Matte Shea Foundation",
+        "kategori": "Foundation",
+        "harga": 185000,
+        "fitur_aksesibilitas": "Tombol Tekan Lebar & Indikator Klik",
+        "deskripsi": "Foundation dengan tombol tekan luas ramah motorik tangan dan bunyi klik pengaman untuk memastikan wadah tertutup rapat.",
+        "gambar": "images/foundation.png"
     },
     {
-        "id": 3, 
-        "nama": "Single-Touch Glow Palette", 
-        "kategori": "Palette", 
-        "harga": 50000, 
-        "deskripsi": "Palet kosmetik dengan tekstur permukaan timbul (embossed) untuk membedakan eyeshadow, blush, dan highlighter secara indrawi.",
-        "fitur_aksesibilitas": "Tekstur Taktil & Pengunci Magnetik"
+        "id": 3,
+        "nama": "Easy-Grip Eyebrow Pencil",
+        "kategori": "Eyebrow",
+        "harga": 85000,
+        "fitur_aksesibilitas": "Gagang Segi Enam Anti-Slip & Label Braille",
+        "deskripsi": "Pensil alis berdesain geometris agar tidak mudah menggelinding serta dilengkapi tekstur kesat untuk genggaman stabil.",
+        "gambar": "images/eyebrow.jpg"
     },
     {
-        "id": 4, 
-        "nama": "Ergonomic Brow Definer", 
-        "kategori": "Mata", 
-        "harga": 30000, 
-        "deskripsi": "Pensil alis dengan pegangan bentuk segitiga ergonomis yang stabil untuk genggaman dengan kemampuan motorik terbatas.",
-        "fitur_aksesibilitas": "Pegangan Segitiga Ergonomis Anti-Slip"
+        "id": 4,
+        "nama": "Magnetic Palette Eyeshadow",
+        "kategori": "Eyeshadow",
+        "harga": 210000,
+        "fitur_aksesibilitas": "Sistem Magnetik & Buka-Tutup Satu Tangan",
+        "deskripsi": "Palet perona mata dengan magnet kuat yang mudah dibuka menggunakan satu tangan oleh penyandang disabilitas fisik.",
+        "gambar": "images/eyeshadow.jpg"
     }
 ]
 
-# Rute Beranda Utama (HANYA Beranda & About VALA)
 @app.route('/')
 def home():
     return render_template('index.html', show_products=False)
 
-# Rute Khusus Koleksi Produk
 @app.route('/koleksi')
 def koleksi():
-    query = request.args.get('q', '').lower()
+    query = request.args.get('q', '').lower().strip()
+    
     if query:
-        hasil = [p for p in PRODUCTS if query in p['nama'].lower() or query in p['kategori'].lower() or query in p['fitur_aksesibilitas'].lower()]
+        hasil_pencarian = [
+            p for p in PRODUK_VALA 
+            if query in p['nama'].lower() 
+            or query in p['kategori'].lower() 
+            or query in p['fitur_aksesibilitas'].lower()
+        ]
     else:
-        hasil = PRODUCTS
-    return render_template('index.html', produk=hasil, pencarian=query, show_products=True)
+        hasil_pencarian = PRODUK_VALA
+
+    return render_template(
+        'index.html', 
+        show_products=True, 
+        produk=hasil_pencarian, 
+        pencarian=request.args.get('q', '')
+    )
 
 @app.route('/tambah-keranjang/<int:product_id>', methods=['POST'])
 def tambah_keranjang(product_id):
     if 'cart' not in session:
         session['cart'] = []
     
-    produk = next((p for p in PRODUCTS if p['id'] == product_id), None)
-    if produk:
-        session['cart'].append(produk)
-        session.modified = True
-        
-    return redirect(url_for('lihat_keranjang'))
+    session['cart'].append(product_id)
+    session.modified = True
+    
+    return redirect(url_for('koleksi'))
 
 @app.route('/keranjang')
 def lihat_keranjang():
-    cart = session.get('cart', [])
-    total_harga = sum(item['harga'] for item in cart)
-    return render_template('keranjang.html', cart=cart, total=total_harga)
-
-@app.route('/hapus-keranjang/<int:index>', methods=['POST'])
-def hapus_keranjang(index):
-    cart = session.get('cart', [])
-    if 0 <= index < len(cart):
-        cart.pop(index)
-        session['cart'] = cart
-        session.modified = True
-    return redirect(url_for('lihat_keranjang'))
+    cart_ids = session.get('cart', [])
+    items_di_keranjang = [p for p in PRODUK_VALA if p['id'] in cart_ids]
+    total_harga = sum(item['harga'] for item in items_di_keranjang)
+    
+    return render_template(
+        'keranjang.html', 
+        items=items_di_keranjang, 
+        total=total_harga
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
